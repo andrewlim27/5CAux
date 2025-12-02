@@ -1,0 +1,189 @@
+song_id,song_title,song_genre,song_artist
+1,EXTRA,K-pop,JEON SOMI
+2,JUMP,K-pop,BLACKPINK
+3,Escapade,K-pop,JEON SOMI
+4,REBEL HEART,K-pop,IVE
+5,Chaotic & Confused,K-pop,JEON SOMI
+6,FAMOUS,K-pop,ALLDAY PROJECT
+7,I AM,K-pop,IVE
+8,CLOSER,K-pop,JEON SOMI
+9,Fast Forward,K-pop,JEON SOMI
+10,Intro : JANE with FKJ,K-pop,"JENNIE, FKJ"
+11,DELU,K-pop,JEON SOMI
+12,XOXO,K-pop,JEON SOMI
+13,After LIKE,K-pop,IVE
+14,ATTITUDE,K-pop,IVE
+15,start a war,K-pop,JENNIE
+16,Love Hangover,K-pop,"JENNIE, Dominic Fike"
+17,OTT,K-pop,IVE
+18,Handlebars,K-pop,"JENNIE, Dua Lipa"
+19,WICKED,K-pop,ALLDAY PROJECT
+20,toxic till the end,K-pop,ROSÉ
+21,Love In My Heart,K-pop,BABYMONSTER
+22,HEYA,K-pop,IVE
+23,New Jeans,K-pop,NewJeans
+24,Pisces,K-pop,JEON SOMI
+25,To. X,K-pop,TAEYEON
+26,HOT,K-pop,LE SSERAFIM
+27,Magnetic,K-pop,ILLIT
+28,Baddie,K-pop,IVE
+29,Psychic Lover,K-pop,ITZY
+30,ZEN,K-pop,JENNIE
+31,SOBER,K-pop,BIGBANG
+32,BURNING UP,K-pop,MEOVV
+33,DRIP,K-pop,BABYMONSTER
+34,FOREVER,K-pop,BABYMONSTER
+35,LOVE DIVE,K-pop,IVE
+36,DUMB DUMB,K-pop,JEON SOMI
+37,PLAYING WITH FIRE,K-pop,BLACKPINK
+38,BATTER UP,K-pop,BABYMONSTER
+39,Outta My Head,K-pop,JEON SOMI
+40,As If It's Your Last,K-pop,BLACKPINK
+41,LIT RIGHT NOW,K-pop,MEOVV
+42,Season of Memories,K-pop,GFRIEND
+43,Cherish,K-pop,IVE
+44,MEOW,K-pop,MEOVV
+45,The Way,K-pop,JEON SOMI
+46,Kitsch,K-pop,IVE
+47,Off The Record,K-pop,IVE
+48,Hype Boy,K-pop,NewJeans
+49,ELEVEN,K-pop,IVE
+50,NOT YOUR GIRL,K-pop,IVE
+51,Linger,Rock,The Cranberries
+52,Angel Of The Morning,Pop,Juice Newton
+53,Like a Prayer,Pop,Madonna
+54,Silver Springs (Live at Warner Bros),Rock,Fleetwood Mac
+55,Hotel California (2013 Remaster),Rock,Eagles
+56,Chicken Fried,Country,Zac Brown Band
+57,Greatest Love of All,R&B,Whitney Houston
+58,Nothing's Gonna Stop Us Now,Pop,Starship
+59,Dancing In the Dark,Rock,Bruce Springsteen
+60,Go Your Own Way (2004 Remaster),Rock,Fleetwood Mac
+61,Imagine (Remastered 2010),Pop,John Lennon
+62,Time After Time,Indie,Cyndi Lauper
+63,Delta Dawn,Pop,Tanya Tucker
+64,Saturn,Indie,Sleeping At Last
+65,The Night We Met (feat. Phoebe Bridgers),Pop,"Lord Huron, Phoebe Bridgers"
+66,Vienna,Country,Billy Joel
+67,Water Under the Bridge,R&B,Adele
+68,(Everything I Do) I Do It For You,Country,Bryan Adams
+69,Your Love,Pop,The Outfield
+70,Silver Springs (2004 Remaster),Rock,Fleetwood Mac
+71,My All,R&B,Mariah Carey
+72,Jacob and the Stone,Pop,Emile Mosseri
+73,Landslide,Rock,Fleetwood Mac
+74,You Are Not Alone,R&B,Michael Jackson
+75,Love Never Felt So Good,R&B,Michael Jackson
+76,Wouldn't It Be Nice,Pop,The Beach Boys
+77,The Wind (Remastered 2021),Folk,Yusuf / Cat Stevens
+78,Mamma Mia,Pop,ABBA
+79,There Is a Light That Never Goes Out,Rock,The Smiths
+80,Club Can't Handle Me (feat. David Guetta),Pop,"Flo Rida, David Guetta"
+81,Versace on the Floor,Pop,Bruno Mars
+82,When I'm Gone,Folk,Phil Ochs
+83,Wild World,Folk,Yusuf / Cat Stevens
+84,Our House,Pop,"Crosby, Stills, Nash & Young"
+85,Blowin' in the Wind,Folk,Bob Dylan
+86,My Sweet Lord (2014 Remaster),Pop,George Harrison
+87,Vincent,Folk,Don McLean
+88,She's Always a Woman,Country,Billy Joel
+89,Good Riddance (Time of Your Life),Rock,Green Day
+90,Song Of The Lake,Rock,Nick Cave & The Bad Seeds
+91,Fast Car (2015 Remaster),Folk,Tracy Chapman
+92,Summer of ’69 (Classic Version),Country,Bryan Adams
+93,Heaven (Classic Version),Country,Bryan Adams
+94,All The Stars (with SZA),Hip-hop,"Kendrick Lamar, SZA"
+95,Lead the Way,R&B,Mariah Carey
+96,Paparazzi,Pop,Lady Gaga
+97,From Eden,Indie,Hozier
+98,Von dutch,Indie,Charli XCX
+99,Let Down (Remastered),Pop,Radiohead
+100,Heaven,Country,Bryan Adams
+101,Fast Car,Country,Luke Combs
+102,Forever,R&B,Chris Brown
+103,Down,Pop,"Jay Sean, Lil Wayne"
+104,Swimming Pools (Drank),Hip-hop,Kendrick Lamar
+105,Human Nature,R&B,Michael Jackson
+106,Eenie Meenie,Pop,"Sean Kingston, Justin Bieber"
+107,Halo,R&B,Beyoncé
+108,Heaven,Pop,"DJ Sammy, Yanou, Do"
+109,White Iverson,Hip-hop,Post Malone
+110,In the Aeroplane Over the Sea,Rock,Neutral Milk Hotel
+111,Hymn to the Sea,Folk,James Horner
+112,Love Me Like You Do,Pop,Ellie Goulding
+113,The Night We Met,Pop,Lord Huron
+114,Ghost,Pop,Justin Bieber
+115,Dreams,Rock,The Cranberries
+116,Colors,Pop,Halsey
+117,American Pie,Folk,Don McLean
+118,Pink + White,Pop,Frank Ocean
+119,360,Indie,Charli XCX
+120,Under Control (feat. Hurts),Pop,"Calvin Harris, Alesso, Hurts"
+121,Summer,Pop,Calvin Harris
+122,Here Comes The Sun (Remastered),Rock,The Beatles
+123,Life's a Bitch,Hip-hop,"Nas, AZ, Olu Dara"
+124,N.Y. State of Mind,Hip-hop,Nas
+125,Clearest Blue,Indie,CHVRCHES
+126,California Gurls,Pop,"Katy Perry, Snoop Dogg"
+127,California Love,Hip-hop,"2Pac, Roger, Dr. Dre"
+128,End of Beginning,Pop,Djo
+129,Girls Just Want to Have Fun,Indie,Cyndi Lauper
+130,Hymne à l'amour,Pop,Édith Piaf
+131,Lightning,Indie,Charli XCX
+132,Constant Repeat,Indie,Charli XCX
+133,Crash,Indie,Charli XCX
+134,New Shapes,Indie,"Charli XCX, Christine and the Queens, Caroline Polachek"
+135,Apple,Indie,Charli XCX
+136,God Bless the U.S.A.,Pop,Lee Greenwood
+137,Summer Of '69,Country,Bryan Adams
+138,Starman (2012 Remaster),Rock,David Bowie
+139,It's All Coming Back to Me Now,Pop,Céline Dion
+140,Don't Stop Believin',Rock,Journey
+141,Unwritten,Pop,Natasha Bedingfield
+142,My Heart Will Go On (Love Theme),Pop,Céline Dion
+143,Through The Wire,Hip-hop,Kanye West
+144,LAND OF THE FREE,Hip-hop,Joey Bada$$
+145,Perfume,Indie,Del Water Gap
+146,Bloodbuzz Ohio,Rock,The National
+147,Slipping Through My Fingers,Pop,ABBA
+148,Born to Run,Rock,Bruce Springsteen
+149,The Winner Takes It All,Pop,ABBA
+150,Cool About It,Indie,boygenius
+151,Not Strong Enough,Indie,boygenius
+152,The Highwayman,Folk,Phil Ochs
+153,Diamonds And Rust,Folk,Joan Baez
+154,The Times They Are A-Changin',Folk,Bob Dylan
+155,Father And Son,Folk,Yusuf / Cat Stevens
+156,Funtimes in Babylon,Folk,Father John Misty
+157,Let It Be (Remastered 2009),Rock,The Beatles
+158,Night Comes On,Folk,Leonard Cohen
+159,If It Be Your Will,Folk,Leonard Cohen
+160,Heart with No Companion,Folk,Leonard Cohen
+161,Hunter's Lullaby,Folk,Leonard Cohen
+162,Birdhouse in Your Soul,Pop,They Might Be Giants
+163,Sway,Jazz,Michael Bublé
+164,The Captain,Folk,Leonard Cohen
+165,Baby Blue (Remastered 2010),Rock,Badfinger
+166,"So Long, Marianne",Folk,Leonard Cohen
+167,Hallelujah (Live),Pop,Bon Jovi
+168,The Law,Folk,Leonard Cohen
+169,Coming Back to You,Folk,Leonard Cohen
+170,In My Secret Life,Folk,Leonard Cohen
+171,My Oh My,Folk,Leonard Cohen
+172,Hallelujah (Live in London),Folk,Leonard Cohen
+173,Careless Whisper,Pop,George Michael
+174,What a Wonderful World,Jazz,Louis Armstrong
+175,(What A) Wonderful World,Jazz,Sam Cooke
+176,Ain't No Mountain High Enough,Pop,"Marvin Gaye, Tammi Terrell"
+177,Total Eclipse of the Heart,Pop,Bonnie Tyler
+178,Make Your Own Kind of Music,Jazz,Cass Elliot
+179,The Partisan,Folk,Leonard Cohen
+180,My Way (2008 Remastered),Jazz,Frank Sinatra
+181,Dance Me to the End of Love,Folk,Leonard Cohen
+182,Hallelujah,Folk,Leonard Cohen
+183,PPP,Pop,Beach House
+184,Smarty,Pop,Lana del Rey
+185,Heaven or Las Vegas,Pop,Cocteau Twins
+186,Constellations,Pop,Duster
+187,Inside Out,Pop,Duster
+188,Master of None,Pop,Beach House
