@@ -1,3 +1,4 @@
+package fivecaux;
 public class User {
     private final int userId;
     private final String name;
@@ -28,7 +29,7 @@ public class User {
     public int getYear(){
         return year;
     }
-    
+
     public String getMajor(){
         return major;
     }

@@ -1,3 +1,4 @@
+package fivecaux;
 public class SongPlay {
     private final int userId;
     private final int songId;
@@ -12,7 +13,7 @@ public class SongPlay {
     public int getUserId(){
         return userId;
     }
-    
+
     public int getSongId(){
         return songId;
     }

@@ -1,3 +1,4 @@
+package fivecaux;
 public class Song {
     private final int songId;
     private final String title;
@@ -14,7 +15,7 @@ public class Song {
     public int getSongId(){
         return songId;
     }
-    
+
     public String getTitle(){
         return title;
     }
