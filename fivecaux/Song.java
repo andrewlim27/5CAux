@@ -18,6 +18,7 @@ public class Song {
     private final String artist; // artist of song
     private final int plays; // number of times the song was played
     private final HashMap<Integer, Integer> numberTimesPlayed;
+    private final HashMap<Integer, String> songTitles;
     
 
     /**
@@ -31,14 +32,17 @@ public class Song {
      * @param plays
      * @param numberTimesPlayed
      */
-    public Song(int songId, String title, String genre, String artist, int plays, HashMap<Integer, Integer> numberTimesPlayed) {
+    public Song(int songId, String title, String genre, String artist, int plays) {
         this.songId = songId;
         this.title = title;
         this.genre = genre;
         this.artist = artist;
         this.plays = plays;
         this.numberTimesPlayed = new HashMap<>();
+        this.songTitles = new HashMap<>();
 
+
+        // reading the file SongPlays.csv to build the map of songId to number of times played
         try { 
             FileReader fr = new FileReader("data/SongPlays.csv"); 
             BufferedReader br = new BufferedReader(fr);
@@ -53,6 +57,25 @@ public class Song {
                 } else {
                      this.numberTimesPlayed.put(currentSongId, 1);
                 }
+                line = br.readLine();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // reading the file Songs.csv to build the map of songId to song title
+        try { 
+            FileReader fr = new FileReader("data/Songs.csv"); 
+            BufferedReader br = new BufferedReader(fr);
+            br.readLine();
+            String line = br.readLine();
+            while(line!=null) {
+                String[] lineArray = line.split(",");
+                int currentSongId = Integer.parseInt(lineArray[0]);
+                String currentSongName = lineArray[1];
+                this.songTitles.put(currentSongId, currentSongName);
                 line = br.readLine();
             }
         } catch (FileNotFoundException e) {
@@ -87,9 +110,16 @@ public class Song {
         }
     }
 
+    public void printSongTitles() {
+        for (Map.Entry<Integer, String> entry : songTitles.entrySet()) {
+            System.out.println(entry.getKey() + " -> " + entry.getValue());
+        }
+    }
+
     public static void main(String[] args) {
         // create ONE Song object just to trigger the file read + map build
-        Song s = new Song(0, "dummy", "none", "none", 0,null);
-        s.printNumberTimesPlayed();
+        Song s = new Song(0, "dummy", "none", "none", 0);
+        //s.printNumberTimesPlayed();
+        s.printSongTitles();
     }
 }
