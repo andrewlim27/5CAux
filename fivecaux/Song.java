@@ -45,7 +45,6 @@ public class Song {
             String line = br.readLine();
             while(line!=null) {
                 String[] lineArray = line.split(","); // lineArray[0] = userId, lineArray[1] = songId, lineArray[2] = time
-                int currentUserId = Integer.parseInt(lineArray[0]); 
                 int currentSongId = Integer.parseInt(lineArray[1]);
                 if(this.numberTimesPlayed.containsKey(currentSongId)) { // check if songId is already in map
                     this.numberTimesPlayed.put(currentSongId, this.numberTimesPlayed.get(currentSongId) + 1); // increment count by 1
@@ -117,7 +116,7 @@ public class Song {
     public static void main(String[] args) {
         // create a Song object
         Song s = new Song(0, "none", "none", "none", 0);
-        //s.printNumberTimesPlayed();
-        //s.printSongTitles();
+        s.printNumberTimesPlayed();
+        s.printSongTitles();
     }
 }
