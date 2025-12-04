@@ -1,10 +1,15 @@
 package fivecaux;
-public class Song {
-    private final int songId;
-    private final String title;
-    private final String genre;
-    private final String artist;
 
+/**
+ * Each object Song represents a unique instance of a song
+ */
+public class Song {
+    private final int songId; // corresponding integer to a song
+    private final String title; // title of song
+    private final String genre; // genre of song
+    private final String artist; // artist of song
+
+    
     public Song(int songId, String title, String genre, String artist) {
         this.songId = songId;
         this.title = title;

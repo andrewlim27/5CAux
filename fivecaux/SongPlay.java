@@ -1,8 +1,12 @@
 package fivecaux;
+
+/**
+ * Each object SongPlay represents an instance of a song being played
+ */
 public class SongPlay {
-    private final int userId;
-    private final int songId;
-    private final String time;
+    private final int userId; // corresponding integer to a user
+    private final int songId; // corresponding integer to a song
+    private final String time; // Date/time the song is played
 
     public SongPlay(int userId, int songId, String time) {
         this.userId = userId;
