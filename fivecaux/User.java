@@ -1,10 +1,14 @@
 package fivecaux;
+
+/**
+ * Each object represents a user and their respective ID, name, school, year, and major
+ */
 public class User {
-    private final int userId;
-    private final String name;
-    private final String school;
-    private final int year;
-    private final String major;
+    private final int userId; // corresponding integer to a user
+    private final String name; // name of the user
+    private final String school; // school of user
+    private final int year; // year of user
+    private final String major; // major of user
 
     public User(int userId, String name, String school, int year, String major){
         this.userId = userId;
