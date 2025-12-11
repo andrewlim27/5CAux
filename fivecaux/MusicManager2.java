@@ -8,11 +8,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class MusicManager2 {
     private final HashMap<Integer, Song> songLibrary; //maps songId to Song objects
     private final HashMap<Integer, User> userLibrary; //maps userId to User objects
-    private final ArrayList<SongPlay> listeningHistory;
+    private final ArrayList<SongPlay> listeningHistory; //ArrayList of all SongPlays from data
 
     /**
      * reads Songs.csv to create Song objects, create HashMap that maps songId to songs
@@ -163,15 +165,56 @@ public class MusicManager2 {
         return sorted;
     }
 
+    public ArrayList<Song> topSongsDay(ArrayList<SongPlay> data){
+        ArrayList<SongPlay> recent = new ArrayList<SongPlay>();
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime cutoff = now.minusHours(24);
+        for (SongPlay p : sortByDate(data)){
+            //if time is in the past 24 hrs
+            if (p.getTime().isAfter(cutoff) && !p.getTime().isAfter(now)){
+                recent.add(p);
+            }
+        }
+        return sortByPlays(recent);
+    }
+
+    public ArrayList<Song> topSongsYear(ArrayList<SongPlay> data){
+        ArrayList<SongPlay> recent = new ArrayList<SongPlay>();
+        LocalDateTime now = LocalDateTime.now();
+        //gets the start of current calendar year
+        LocalDateTime cutoff = LocalDate.now().withDayOfYear(1).atStartOfDay();
+        for (SongPlay p : sortByDate(data)){
+            //if time is in this calendar year
+            if (p.getTime().isAfter(cutoff) && !p.getTime().isAfter(now)){
+                recent.add(p);
+            }
+        }
+        return sortByPlays(recent);
+    }
+
+    public ArrayList<Song> topSongsSemester(ArrayList<SongPlay> data){
+        ArrayList<SongPlay> recent = new ArrayList<SongPlay>();
+        LocalDateTime now = LocalDateTime.now();
+        //gets the start of current calendar year
+        LocalDateTime cutoff = LocalDateTime.of(2025, 8, 25, 0, 0);
+        for (SongPlay p : sortByDate(data)){
+            //if time is in this calendar year
+            if (p.getTime().isAfter(cutoff) && !p.getTime().isAfter(now)){
+                recent.add(p);
+            }
+        }
+        return sortByPlays(recent);
+    }
+
     public static void main(String[] args){
-        SongLibrary lib = new SongLibrary();
+        MusicManager2 lib = new MusicManager2();
         lib.printNumberTimesPlayed();
         System.out.println();
         System.out.println();
         System.out.println();
         System.out.println("SORTED BELOW HERE");
         System.out.println("------------------------------");
-        for (Song x : lib.sort()){
+        for (Song x : lib.sortByPlays(lib.listeningHistory)){
             System.out.println(x);
         }
         System.out.println();
@@ -179,7 +222,7 @@ public class MusicManager2 {
         System.out.println();
         System.out.println("TOP 10 MOST PLAYED SONGS BELOW HERE");
         System.out.println("------------------------------");
-        ArrayList<Song> sorted = lib.sort();
+        ArrayList<Song> sorted = lib.sortByPlays(lib.listeningHistory);
         for (int i = 0; i < 10; i++){
             System.out.println(sorted.get(i));
         }
