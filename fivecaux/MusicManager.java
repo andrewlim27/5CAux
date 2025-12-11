@@ -114,6 +114,7 @@ public class MusicManager {
 
     public ArrayList<SongPlay> filterSchool(String schoolName) {
         ArrayList<SongPlay> schoolList = new ArrayList<SongPlay>(); // creates a new empty ArrayList that will be SongPlay objects of the given school
+        
         for(SongPlay x: listeningHistory) { // loops through the listeningHistory that contains data from SongPlays.csv
             User userObject = userLibrary.get(x.getUserId());
             if(userObject.getSchool().equals(schoolName)) { // checks each userId in listeningHistory to see if they go to the given school
@@ -122,6 +123,32 @@ public class MusicManager {
         }
 
         return schoolList;
+    }
+
+    public ArrayList<SongPlay> filterYear(int year) {
+        ArrayList<SongPlay> yearList = new ArrayList<SongPlay>(); // creates a new empty ArrayList that will be SongPlay objects of the given year
+        
+        for(SongPlay x: listeningHistory) { // loops through the listeningHistory that contains data from SongPlays.csv
+            User userObject = userLibrary.get(x.getUserId());
+            if(userObject.getYear() == year) { // checks each userId in listeningHistory to see if they are in the given year
+                yearList.add(x);
+            }
+        }
+
+        return yearList;
+    }
+
+     public ArrayList<SongPlay> filterMajor(String major) {
+        ArrayList<SongPlay> majorList = new ArrayList<SongPlay>(); // creates a new empty ArrayList that will be SongPlay objects of the given major
+        
+        for(SongPlay x: listeningHistory) { // loops through the listeningHistory that contains data from SongPlays.csv
+            User userObject = userLibrary.get(x.getUserId());
+            if(userObject.getMajor().equals(major)) { // checks each userId in listeningHistory to see if they study the given major
+                majorList.add(x);
+            }
+        }
+
+        return majorList;
     }
     public void printNumberTimesPlayed() {
         for (Map.Entry<Integer, Song> entry : songLibrary.entrySet()) {
