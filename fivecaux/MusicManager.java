@@ -112,6 +112,13 @@ public class MusicManager {
         }
     }
 
+    /**
+     * filters each instance of every song listen from listeningHistory by the given school and returns
+     * those instances as a new ArrayList
+     * 
+     * @param schoolName the given schoolname to filter by
+     * @return schoolList, the list of every instance of a song listened to at a specific school
+     */
     public ArrayList<SongPlay> filterSchool(String schoolName) {
         ArrayList<SongPlay> schoolList = new ArrayList<SongPlay>(); // creates a new empty ArrayList that will be SongPlay objects of the given school
         
@@ -125,6 +132,13 @@ public class MusicManager {
         return schoolList;
     }
 
+    /**
+     * filters each instance of every song listen from listeningHistory by the given year (Freshman, Sophomore, etc.) 
+     * and returns those instances as a new ArrayList
+     * 
+     * @param year the given year to filter by
+     * @return yearList, the list of every instance of a song listened to by a specific year
+     */
     public ArrayList<SongPlay> filterYear(int year) {
         ArrayList<SongPlay> yearList = new ArrayList<SongPlay>(); // creates a new empty ArrayList that will be SongPlay objects of the given year
         
@@ -138,7 +152,14 @@ public class MusicManager {
         return yearList;
     }
 
-     public ArrayList<SongPlay> filterMajor(String major) {
+    /**
+     * filters each instance of every song listen from listeningHistory by the given major and returns
+     * those instances as a new ArrayList
+     * 
+     * @param major the given schoolname to filter by
+     * @return majorList, the list of every instance of a song listened to by a specific major
+     */
+    public ArrayList<SongPlay> filterMajor(String major) {
         ArrayList<SongPlay> majorList = new ArrayList<SongPlay>(); // creates a new empty ArrayList that will be SongPlay objects of the given major
         
         for(SongPlay x: listeningHistory) { // loops through the listeningHistory that contains data from SongPlays.csv
@@ -150,6 +171,27 @@ public class MusicManager {
 
         return majorList;
     }
+
+    /**
+     * filters each instance of every song listen from listeningHistory by the given genre and returns
+     * those instances as a new ArrayList
+     * 
+     * @param genre the given genre to filter by
+     * @return genreList, the list of every instance of a song listened from a specific genre
+     */
+    public ArrayList<SongPlay> filterGenre(String genre) {
+        ArrayList<SongPlay> genreList = new ArrayList<SongPlay>(); // creates a new empty ArrayList that will be SongPlay objects of the given genre
+        
+        for(SongPlay x: listeningHistory) { // loops through the listeningHistory that contains data from SongPlays.csv
+            Song songObject = songLibrary.get(x.getSongId());
+            if(songObject.getGenre().equals(genre)) { // checks each songId in listeningHistory to see if they study the given major
+                genreList.add(x);
+            }
+        }
+
+        return genreList;
+    }
+    
     public void printNumberTimesPlayed() {
         for (Map.Entry<Integer, Song> entry : songLibrary.entrySet()) {
             System.out.println(entry.getKey() + " -> " + entry.getValue());
@@ -167,7 +209,8 @@ public class MusicManager {
 
     public static void main(String[] args){
         MusicManager lib = new MusicManager();
-        lib.printNumberTimesPlayed();
+        //lib.printNumberTimesPlayed();
+        System.out.println(lib.filterGenre("K-pop"));
         System.out.println();
         System.out.println();
         System.out.println();
