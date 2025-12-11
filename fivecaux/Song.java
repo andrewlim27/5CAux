@@ -56,6 +56,10 @@ public class Song implements Comparable<Song> {
         return plays;
     }
 
+    public void resetPlays(){
+        plays = 0;
+    }
+
     public String toString(){
         return "Title: " + title + " | Artist: " + artist + " | Genre: " + genre + " | Plays: " + plays;
     }
