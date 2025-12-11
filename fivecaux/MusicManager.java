@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class MusicManager {
@@ -111,6 +112,17 @@ public class MusicManager {
         }
     }
 
+    public ArrayList<SongPlay> filterSchool(String schoolName) {
+        ArrayList<SongPlay> schoolList = new ArrayList<SongPlay>(); // creates a new empty ArrayList that will be SongPlay objects of the given school
+        for(SongPlay x: listeningHistory) { // loops through the listeningHistory that contains data from SongPlays.csv
+            User userObject = userLibrary.get(x.getUserId());
+            if(userObject.getSchool().equals(schoolName)) { // checks each userId in listeningHistory to see if they go to the given school
+                schoolList.add(x);
+            }
+        }
+
+        return schoolList;
+    }
     public void printNumberTimesPlayed() {
         for (Map.Entry<Integer, Song> entry : songLibrary.entrySet()) {
             System.out.println(entry.getKey() + " -> " + entry.getValue());
@@ -127,7 +139,7 @@ public class MusicManager {
     }
 
     public static void main(String[] args){
-        SongLibrary lib = new SongLibrary();
+        MusicManager lib = new MusicManager();
         lib.printNumberTimesPlayed();
         System.out.println();
         System.out.println();

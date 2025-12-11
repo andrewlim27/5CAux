@@ -37,4 +37,8 @@ public class SongPlay implements Comparable<SongPlay> {
     public LocalDateTime getTime(){
         return time;
     }
+
+    public String toString(){
+        return "UserID: " + userId + " | SongID: " + songId + " | Time: " + time;
+    }
 }
