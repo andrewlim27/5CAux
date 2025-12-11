@@ -156,8 +156,10 @@ public class MusicManager2 {
 
     //returns a sorted ArrayList of SongPlay objects based on the time of play (most recent appear first)
     public ArrayList<SongPlay> sortByDate(ArrayList<SongPlay> data){
-        ArrayList<SongPlay> sorted = data;
-        Collections.sort(data);
+        //copy data
+        ArrayList<SongPlay> sorted = new ArrayList<>(data);
+        //sort and return the copied data
+        Collections.sort(sorted);
         return sorted;
     }
 
