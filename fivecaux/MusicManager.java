@@ -464,8 +464,6 @@ public class MusicManager {
         for (int i = 0; i < 10; i++){
             System.out.println(sorted.get(i));
         }
-        // Assuming 'manager' is your MusicManager2 instance
-        // and you have generated data using the DataGenerator
-        lib.printTopMatchesForUser(2); // Find matches for User ID 1
+        lib.printTopMatchesForUser(2);
     }
 }
