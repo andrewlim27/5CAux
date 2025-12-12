@@ -4,15 +4,29 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
+/**
+ * MusicManager performs all the basic features of the app:
+ * sorting listening history,
+ * filtering listening history,
+ * and matching users based on taste
+ * 
+ * @author Julian Chumacero
+ * @author Andrew Lim
+ * @author Alexander Adhikari
+ */
+
 public class MusicManager {
     private final HashMap<Integer, Song> songLibrary; //maps songId to Song objects
     private final HashMap<Integer, User> userLibrary; //maps userId to User objects
-    private ArrayList<SongPlay> listeningHistory;
+    private ArrayList<SongPlay> listeningHistory; //stores listening data in a list of SongPlay objects
 
     /**
      * reads Songs.csv to create Song objects, create HashMap that maps songId to songs
@@ -115,13 +129,14 @@ public class MusicManager {
      * filters each instance of every song listen from listeningHistory by the given school and returns
      * those instances as a new ArrayList
      * 
+     * @param data the SongPlay listening history we want to filter
      * @param schoolName the given schoolname to filter by
      * @return schoolList, the list of every instance of a song listened to at a specific school
      */
-    public ArrayList<SongPlay> filterSchool(String schoolName) {
+    public ArrayList<SongPlay> filterSchool(ArrayList<SongPlay> data, String schoolName) {
         ArrayList<SongPlay> schoolList = new ArrayList<SongPlay>(); // creates a new empty ArrayList that will be SongPlay objects of the given school
         
-        for(SongPlay x: listeningHistory) { // loops through the listeningHistory that contains data from SongPlays.csv
+        for(SongPlay x: data) { // loops through the listeningHistory that contains data from SongPlays.csv
             User userObject = userLibrary.get(x.getUserId());
             if(userObject.getSchool().equals(schoolName)) { // checks each userId in listeningHistory to see if they go to the given school
                 schoolList.add(x);
@@ -135,13 +150,14 @@ public class MusicManager {
      * filters each instance of every song listen from listeningHistory by the given year (Freshman, Sophomore, etc.) 
      * and returns those instances as a new ArrayList
      * 
+     * @param data the SongPlay listening history we want to filter
      * @param year the given year to filter by
      * @return yearList, the list of every instance of a song listened to by a specific year
      */
-    public ArrayList<SongPlay> filterYear(int year) {
+    public ArrayList<SongPlay> filterYear(ArrayList<SongPlay> data, int year) {
         ArrayList<SongPlay> yearList = new ArrayList<SongPlay>(); // creates a new empty ArrayList that will be SongPlay objects of the given year
         
-        for(SongPlay x: listeningHistory) { // loops through the listeningHistory that contains data from SongPlays.csv
+        for(SongPlay x: data) { // loops through the listeningHistory that contains data from SongPlays.csv
             User userObject = userLibrary.get(x.getUserId());
             if(userObject.getYear() == year) { // checks each userId in listeningHistory to see if they are in the given year
                 yearList.add(x);
@@ -155,13 +171,14 @@ public class MusicManager {
      * filters each instance of every song listen from listeningHistory by the given major and returns
      * those instances as a new ArrayList
      * 
+     * @param data the SongPlay listening history we want to filter
      * @param major the given schoolname to filter by
      * @return majorList, the list of every instance of a song listened to by a specific major
      */
-    public ArrayList<SongPlay> filterMajor(String major) {
+    public ArrayList<SongPlay> filterMajor(ArrayList<SongPlay> data, String major) {
         ArrayList<SongPlay> majorList = new ArrayList<SongPlay>(); // creates a new empty ArrayList that will be SongPlay objects of the given major
         
-        for(SongPlay x: listeningHistory) { // loops through the listeningHistory that contains data from SongPlays.csv
+        for(SongPlay x: data) { // loops through the listeningHistory that contains data from SongPlays.csv
             User userObject = userLibrary.get(x.getUserId());
             if(userObject.getMajor().equals(major)) { // checks each userId in listeningHistory to see if they study the given major
                 majorList.add(x);
@@ -175,13 +192,14 @@ public class MusicManager {
      * filters each instance of every song listen from listeningHistory by the given genre and returns
      * those instances as a new ArrayList
      * 
+     * @param data the SongPlay listening history we want to filter
      * @param genre the given genre to filter by
      * @return genreList, the list of every instance of a song listened from a specific genre
      */
-    public ArrayList<SongPlay> filterGenre(String genre) {
+    public ArrayList<SongPlay> filterGenre(ArrayList<SongPlay> data, String genre) {
         ArrayList<SongPlay> genreList = new ArrayList<SongPlay>(); // creates a new empty ArrayList that will be SongPlay objects of the given genre
         
-        for(SongPlay x: listeningHistory) { // loops through the listeningHistory that contains data from SongPlays.csv
+        for(SongPlay x: data) { // loops through the listeningHistory that contains data from SongPlays.csv
             Song songObject = songLibrary.get(x.getSongId());
             if(songObject.getGenre().equals(genre)) { // checks each songId in listeningHistory to see if they study the given major
                 genreList.add(x);
@@ -191,31 +209,157 @@ public class MusicManager {
         return genreList;
     }
     
-    public void printNumberTimesPlayed() {
-        for (Map.Entry<Integer, Song> entry : songLibrary.entrySet()) {
-            System.out.println(entry.getKey() + " -> " + entry.getValue());
+    /**
+	 * prints the number of times each song was played
+	 */
+    public void printNumberTimesPlayed(ArrayList<Song> songs) {
+        for (Song song : songs){
+            System.out.println(song.getTitle() + " -> " + song.getPlays());
+        }
+    }
+    
+    /**
+	 * sets number of plays for every song to 0
+	 */
+    private void clearPlays(){
+        for (Song s : songLibrary.values()){
+            s.resetPlays();
         }
     }
 
-    public ArrayList<Song> sort(){
-        ArrayList<Song> sorted = new ArrayList<Song>();
-        for (Map.Entry<Integer, Song> entry : songLibrary.entrySet()){
-            sorted.add(entry.getValue());
+    /**
+     * @return listeningHistory
+     */
+    public ArrayList<SongPlay> getListeningHistory(){
+        return new ArrayList<>(listeningHistory);
+    }
+
+    /**
+     * @param songs the list of Song objects to take from
+     * @param num the number of Song objects to take from the top/front of songs
+     * @return topSongs, list of Song objects at the top of the list
+     */
+    public ArrayList<Song> head(ArrayList<Song> songs, int num){
+        ArrayList<Song> topSongs = new ArrayList<Song>();
+        int i = 0;
+        while (i < num && i <= songs.size()){
+            topSongs.add(songs.get(i));
+            i++;
         }
+        return topSongs;
+    }
+
+    /**
+	 * @param data the SongPlay listening history we want to count from
+	 * @return ArrayList of Song objects with instance variable plays modified to reflect the  number of times they have been played in the ArrayList data of SongPlay objects
+     * does not return any Song objects that do not appear in data
+	 */
+    public ArrayList<Song> countPlays(ArrayList<SongPlay> data){
+        //reset song play counts to 0
+        clearPlays();
+
+        //count songs
+        for (SongPlay p : data){
+            songLibrary.get(p.getSongId()).incrementPlays();
+        }
+
+        //store and return only songs that were played at least once
+        ArrayList<Song> countedSongs = new ArrayList<Song>();
+        for (Song s : songLibrary.values()){
+            if (s.getPlays() > 0){
+                countedSongs.add(s);
+            }
+        }
+        return countedSongs;
+    }
+
+    /**
+	 * @param data the SongPlay listening history we want to sort
+	 * @return sorted ArrayList of SongPlay objects based on the number of times they have been played in the ArrayList data of SongPlay objects
+	 */
+    public ArrayList<Song> sortByPlays(ArrayList<SongPlay> data){
+        //count the data
+        ArrayList<Song> sorted = countPlays(data);
+        //sort and return the counted data
         Collections.sort(sorted);
         return sorted;
+    }
+
+    /**
+	 * @param data the SongPlay listening history we want to sort
+	 * @return sorted ArrayList of SongPlay objects based on the time of play (most recent appear first)
+	 */
+    public ArrayList<SongPlay> sortByDate(ArrayList<SongPlay> data){
+        //copy data
+        ArrayList<SongPlay> sorted = new ArrayList<>(data);
+        //sort and return the copied data
+        Collections.sort(sorted);
+        return sorted;
+    }
+
+    /**
+	 * @param data the SongPlay listening history we want to sort and filter
+	 * @return ArrayList of songs played in the past 24 hrs, sorted most-played to least
+	 */
+    public ArrayList<Song> topSongsDay(ArrayList<SongPlay> data){
+        ArrayList<SongPlay> recent = new ArrayList<SongPlay>();
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime cutoff = now.minusHours(24);
+        for (SongPlay p : sortByDate(data)){
+            //if time is in the past 24 hrs
+            if (p.getTime().isAfter(cutoff) && !p.getTime().isAfter(now)){
+                recent.add(p);
+            }
+        }
+        return sortByPlays(recent);
+    }
+
+    /**
+	 * @param data the SongPlay listening history we want to sort and filter
+	 * @return ArrayList of songs played this calendar year, sorted most-played to least
+	 */
+    public ArrayList<Song> topSongsYear(ArrayList<SongPlay> data){
+        ArrayList<SongPlay> recent = new ArrayList<SongPlay>();
+        LocalDateTime now = LocalDateTime.now();
+        //gets the start of current calendar year
+        LocalDateTime cutoff = LocalDate.now().withDayOfYear(1).atStartOfDay();
+        for (SongPlay p : sortByDate(data)){
+            //if time is in this calendar year
+            if (p.getTime().isAfter(cutoff) && !p.getTime().isAfter(now)){
+                recent.add(p);
+            }
+        }
+        return sortByPlays(recent);
+    }
+
+    /**
+	 * @param data the SongPlay listening history we want to sort and filter
+	 * @return ArrayList of songs played this semester, sorted most-played to least
+	 */
+    public ArrayList<Song> topSongsSemester(ArrayList<SongPlay> data){
+        ArrayList<SongPlay> recent = new ArrayList<SongPlay>();
+        LocalDateTime now = LocalDateTime.now();
+        //gets the start of current calendar year
+        LocalDateTime cutoff = LocalDateTime.of(2025, 8, 25, 0, 0);
+        for (SongPlay p : sortByDate(data)){
+            //if time is in this calendar year
+            if (p.getTime().isAfter(cutoff) && !p.getTime().isAfter(now)){
+                recent.add(p);
+            }
+        }
+        return sortByPlays(recent);
     }
 
     public static void main(String[] args){
         MusicManager lib = new MusicManager();
         //lib.printNumberTimesPlayed();
-        System.out.println(lib.filterGenre("K-pop"));
+        System.out.println(lib.filterGenre(lib.getListeningHistory(), "K-pop"));
         System.out.println();
         System.out.println();
         System.out.println();
         System.out.println("SORTED BELOW HERE");
         System.out.println("------------------------------");
-        for (Song x : lib.sort()){
+        for (Song x : lib.sortByPlays(lib.getListeningHistory())){
             System.out.println(x);
         }
         System.out.println();
@@ -223,7 +367,7 @@ public class MusicManager {
         System.out.println();
         System.out.println("TOP 10 MOST PLAYED SONGS BELOW HERE");
         System.out.println("------------------------------");
-        ArrayList<Song> sorted = lib.sort();
+        ArrayList<Song> sorted = lib.sortByPlays(lib.getListeningHistory());
         for (int i = 0; i < 10; i++){
             System.out.println(sorted.get(i));
         }
