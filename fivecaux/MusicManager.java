@@ -16,9 +16,9 @@ import java.util.Collections;
 
 /**
  * MusicManager performs all the basic features of the app:
- * sorting listening history,
- * filtering listening history,
- * and matching users based on taste
+ * 1. sorting listening history
+ * 2. filtering listening history
+ * 3. matching users based on taste
  * 
  * @author Julian Chumacero
  * @author Andrew Lim
@@ -400,7 +400,10 @@ public class MusicManager {
      * scans entire database to find user with closest match to target user, prints best match and similarity
      * @param targetUserId the user whose match we want to find
      */
-    public void printTopMatchesForUser(int targetUserId) {
+    public void printTopMatchForUser(int targetUserId) {
+        if (targetUserId == -1){
+            return;
+        }
         //check if user exists
         if (!userLibrary.containsKey(targetUserId)) {
             System.out.println("User ID " + targetUserId + " not found.");
@@ -464,6 +467,6 @@ public class MusicManager {
         for (int i = 0; i < 10; i++){
             System.out.println(sorted.get(i));
         }
-        lib.printTopMatchesForUser(2);
+        lib.printTopMatchForUser(2);
     }
 }
