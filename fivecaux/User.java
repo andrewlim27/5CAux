@@ -1,7 +1,12 @@
 package fivecaux;
 
+
 /**
  * Each object represents a user and their respective ID, name, school, year, and major
+ * 
+ * @author Julian Chumacero
+ * @author Andrew Lim
+ * @author Alexander Adhikari
  */
 public class User {
     private final int userId; // corresponding integer to a user

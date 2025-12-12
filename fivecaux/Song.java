@@ -1,8 +1,13 @@
 package fivecaux;
 
 /**
- * Each object Song represents a unique instance of a song
+ * Each object Song represents a unique song
+ * 
+ * @author Julian Chumacero
+ * @author Andrew Lim
+ * @author Alexander Adhikari
  */
+
 public class Song implements Comparable<Song> {
     private final int songId; // corresponding integer to a song
     private final String title; // title of song

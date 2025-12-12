@@ -2,7 +2,11 @@ package fivecaux;
 import java.time.LocalDateTime;
 
 /**
- * Each object SongPlay represents an instance of a song being played
+ * Each SongPlay object represents an instance of a song being played
+ * 
+ * @author Julian Chumacero
+ * @author Andrew Lim
+ * @author Alexander Adhikari
  */
 public class SongPlay implements Comparable<SongPlay> {
     private final int userId; // corresponding integer to a user
