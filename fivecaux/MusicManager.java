@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -350,6 +352,97 @@ public class MusicManager {
         return sortByPlays(recent);
     }
 
+    /**
+	 * @param userId the user whose listened songs we want to find
+	 * @return uniqueSongs, a hashSet of songIds the user has listened to 
+	 */
+    private Set<Integer> getUniqueSongIdsForUser(int userId) {
+        Set<Integer> uniqueSongs = new HashSet<>();
+        
+        for (SongPlay play : this.listeningHistory) {
+            if (play.getUserId() == userId) {
+                uniqueSongs.add(play.getSongId());
+            }
+        }
+        return uniqueSongs;
+    }
+
+    /**
+     * compares two users, returns a score between 0.0 and 1.0
+     * 1.0 means they have listened to the exact same set of songs
+     * 0.0 means they share no songs in common
+     * @param user1Id one user we want to compare
+     * @param user2Id other user we want to compare to
+	 * @return score, indicating how similar taste the two users have 
+     */
+    public double getMatchScore(int user1Id, int user2Id) {
+        Set<Integer> user1Songs = getUniqueSongIdsForUser(user1Id);
+        Set<Integer> user2Songs = getUniqueSongIdsForUser(user2Id);
+
+        //check if either user has 0 plays
+        if (user1Songs.isEmpty() || user2Songs.isEmpty()) {
+            return 0.0;
+        }
+
+        //calculate intersection (number of shared songs)
+        Set<Integer> intersection = new HashSet<>(user1Songs);
+        intersection.retainAll(user2Songs); 
+
+        //calculate union (total number of unique songs listened to)
+        Set<Integer> union = new HashSet<>(user1Songs);
+        union.addAll(user2Songs);
+
+        //calculate score
+        return (double) intersection.size() / union.size();
+    }
+
+    /**
+     * scans entire database to find user with closest match to target user, prints best match and similarity
+     * @param targetUserId the user whose match we want to find
+     */
+    public void printTopMatchesForUser(int targetUserId) {
+        //check if user exists
+        if (!userLibrary.containsKey(targetUserId)) {
+            System.out.println("User ID " + targetUserId + " not found.");
+            return;
+        }
+        
+        String targetName = userLibrary.get(targetUserId).getName();
+        System.out.println("Finding matches for: " + targetName + " (ID: " + targetUserId + ")");
+        
+        //iterate over every other user in the library
+        double bestScore = -1.0;
+        int bestMatchId = -1;
+
+        for (int otherUserId : userLibrary.keySet()) {
+            //skip comparing target user to themselves
+            if (otherUserId == targetUserId) continue;
+
+            double score = getMatchScore(targetUserId, otherUserId);
+
+            // //print high matches (> 30%)
+            // if (score > 0.30) {
+            //     String otherName = userLibrary.get(otherUserId).getName();
+            //     System.out.printf("   Match Found: %s (Score: %.2f%%)%n", otherName, score * 100);
+            // }
+
+            //track the best match
+            if (score > bestScore) {
+                bestScore = score;
+                bestMatchId = otherUserId;
+            }
+        }
+
+        //print best match
+        if (bestMatchId != -1) {
+            System.out.println("------------------------------------------------");
+            System.out.printf("BEST MATCH: %s with %.2f%% compatibility!%n", 
+                            userLibrary.get(bestMatchId).getName(), bestScore * 100);
+        } else {
+            System.out.println("No significant matches found.");
+        }
+    }
+
     public static void main(String[] args){
         MusicManager lib = new MusicManager();
         //lib.printNumberTimesPlayed();
@@ -371,5 +464,8 @@ public class MusicManager {
         for (int i = 0; i < 10; i++){
             System.out.println(sorted.get(i));
         }
+        // Assuming 'manager' is your MusicManager2 instance
+        // and you have generated data using the DataGenerator
+        lib.printTopMatchesForUser(2); // Find matches for User ID 1
     }
 }
