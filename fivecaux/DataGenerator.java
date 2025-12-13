@@ -20,7 +20,7 @@ import java.util.Set;
  * Next steps for this project would involve importing users Spotify/Apple Music listening history
  * and possibly incorporating live data integration through APIs
  * 
- * @author Google Gemini
+ * @author Google Gemini. https://gemini.google.com/share/23f57521b0ef
  * We wanted to generate data directly using Gemini, however the desired number of rows (10000) was too many, thus Gemini had to create a class to generate our data
  * 
  */
