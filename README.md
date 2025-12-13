@@ -1,5 +1,8 @@
 # 5CAux
 
+5CAux is a Java-based music analytics application for students at the Claremont Colleges that analyzes collective listening data to illustrate campus-wide music trends and help users discover peers with similar musical tastes. The program runs as an interactive command-line application backed by CSV datasets.
+
+
 ## Description
 
 5CAux is a prototype music analytics application designed for students at the Claremont Colleges (the 5Cs). The project analyzes listening data to display trends in what students are listening to and to help individuals discover others with similar musical tastes. By collecting, sorting, filtering, and matching listening behavior, 5CAux aims to make music culture within the 5Cs more visible to facilitate community connection.
