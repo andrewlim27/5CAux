@@ -286,3 +286,7 @@ We would like to thank **Professor Jingyi Li** for guidance and feedback through
 
 We also acknowledge the use of **Google Gemini** to assist in generating synthetic data for testing purposes.
 
+## License
+This project is licensed under the MIT License.  
+See the [LICENSE](LICENSE) file for details.
+
