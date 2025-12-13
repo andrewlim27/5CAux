@@ -3,6 +3,13 @@ package fivecaux;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Runs the main program and dislays the user interface
+ * 
+ * @author Andrew Lim
+ * @author Julian Chumacero
+ * @author Alexander Adhikari
+ */
 public class Main {
 
     //store state of active filters
