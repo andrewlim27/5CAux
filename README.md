@@ -2,6 +2,52 @@
 
 5CAux is a Java-based music analytics application for students at the Claremont Colleges that analyzes collective listening data to illustrate campus-wide music trends and help users discover peers with similar musical tastes. The program runs as an interactive command-line application backed by CSV datasets.
 
+## Example Output
+
+### Sort by Number of Plays
+<div>
+  <img src="images/1.png" width="22%">
+  <img src="images/2.png" width="30%">
+</div>
+
+---
+
+### Filter by Date
+<div>
+  <img src="images/3.png" width="40%">
+</div>
+
+---
+
+### Filter by One Category (e.g. School, Year, Major, Genre)
+<div>
+  <img src="images/4.png" width="32%">
+  <img src="images/5.png" width="22%">
+  <img src="images/6.png" width="32%">
+</div>
+
+---
+
+### Combining Filters
+<div>
+  <img src="images/7.png" width="19%">
+  <img src="images/8.png" width="23%">
+  <img src="images/9.png" width="35%">
+</div>
+
+---
+
+### Clearing Filters
+<div>
+  <img src="images/10.png" width="22%">
+</div>
+
+---
+
+### Matching Users Based on Music Taste
+<div>
+  <img src="images/11.png" width="25%">
+</div>
 
 ## Description
 
@@ -53,6 +99,10 @@ This project is written in Java and is run from a `main` method using a command-
 - The program expects CSV data files (`Users.csv`, `Songs.csv`, `SongPlays.csv`) to be available in the appropriate data directory.
 - Run the `Main` class to start the application.
 
+### External Libraries
+
+This project uses **only standard Java libraries**.
+
 ### Using the Application
 Once running, the program presents an interactive menu that allows users to:
 - View top songs over various time ranges
@@ -66,15 +116,161 @@ Example actions include:
 - Narrowing results to a particular genre and class year
 - Finding a musical match by entering a user ID
 
-<!--
-OPTIONAL:
-If you want to include screenshots or example terminal output later, you can add a subsection here, e.g.:
+## Public API Documentation
 
-### Example Output
-![Screenshot description](path/to/image.png)
+This section documents the public constructors and methods of the project’s custom classes.
+Together, these form the public API of the application.
 
-This is not required for a CS class project.
--->
+### Class: `MusicManager`
+
+#### Constructor
+
+**`MusicManager()`**  
+Initializes the application by loading users, songs, and listening-history data
+from CSV files into memory.
+
+**Example:**
+
+```java
+MusicManager manager = new MusicManager();
+```
+
+---
+
+### Public Methods
+
+#### `ArrayList<SongPlay> getListeningHistory()`
+Returns a copy of the full listening history.
+
+**Example:**
+
+```java
+MusicManager manager = new MusicManager();
+ArrayList<SongPlay> history = manager.getListeningHistory();
+```
+
+---
+
+#### `ArrayList<Song> sortByPlays(ArrayList<SongPlay> data)`
+Sorts songs by number of plays (descending).
+
+**Inputs:**  
+- `data`: list of `SongPlay` objects  
+
+**Outputs:**  
+- sorted list of `Song` objects  
+
+**Example:**
+
+```java
+ArrayList<Song> ranked = manager.sortByPlays(history);
+```
+
+---
+
+#### `ArrayList<SongPlay> filterSchool(ArrayList<SongPlay> data, String school)`
+
+**Example:**
+
+```java
+ArrayList<SongPlay> pomonaData =
+    manager.filterSchool(history, "Pomona");
+```
+
+---
+
+#### `ArrayList<SongPlay> filterYear(ArrayList<SongPlay> data, int year)`
+
+**Example:**
+
+```java
+ArrayList<SongPlay> classOf2026 =
+    manager.filterYear(history, 2026);
+```
+
+---
+
+#### `ArrayList<SongPlay> filterMajor(ArrayList<SongPlay> data, String major)`
+
+**Example:**
+
+```java
+ArrayList<SongPlay> csMajors =
+    manager.filterMajor(history, "Computer Science");
+```
+
+---
+
+#### `ArrayList<SongPlay> filterGenre(ArrayList<SongPlay> data, String genre)`
+
+**Example:**
+
+```java
+ArrayList<SongPlay> popSongs =
+    manager.filterGenre(history, "Pop");
+```
+
+---
+
+#### `ArrayList<Song> topSongsDay(ArrayList<SongPlay> data)`
+
+**Example:**
+
+```java
+ArrayList<Song> topToday =
+    manager.topSongsDay(history);
+```
+
+---
+
+#### `ArrayList<Song> topSongsYear(ArrayList<SongPlay> data)`
+
+**Example:**
+```java
+ArrayList<Song> topThisYear =
+    manager.topSongsYear(history);
+```
+
+---
+
+#### `ArrayList<Song> topSongsSemester(ArrayList<SongPlay> data)`
+
+**Example:**
+```java
+ArrayList<Song> topThisSemester =
+    manager.topSongsSemester(history);
+```
+
+---
+
+#### `double getMatchScore(int user1Id, int user2Id)`
+
+**Example:**
+
+```java
+double score = manager.getMatchScore(1, 5);
+```
+
+---
+
+#### `void printTopMatchForUser(int userId)`
+
+**Example:**
+
+```java
+manager.printTopMatchForUser(2);
+```
+
+## Dataset
+
+This repository includes the dataset used for the project:
+
+- `Users.csv`
+- `Songs.csv`
+- `SongPlays.csv`
+
+The data is **synthetically generated** and does **not contain sensitive or real user information**.
+
 
 ## Authors
 
